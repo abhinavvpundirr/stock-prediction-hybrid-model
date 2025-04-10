@@ -1,0 +1,46 @@
+stages:
+  data_load:
+    cmd: python scripts/data_load.py
+    deps:
+      - scripts/data_load.py
+      - configs/params.yaml
+    outs:
+      - data/raw
+
+  data_process:
+    cmd: python scripts/data_process.py
+    deps:
+      - scripts/data_process.py
+      - data/raw
+      - configs/params.yaml
+    outs:
+      - data/processed
+
+  train:
+    cmd: python scripts/train.py
+    deps:
+      - scripts/train.py
+      - data/processed
+      - configs/params.yaml
+    outs:
+      - models/trained
+
+  evaluate:
+    cmd: python scripts/evaluate.py
+    deps:
+      - scripts/evaluate.py
+      - models/trained
+      - data/processed
+      - configs/params.yaml
+    metrics:
+      - metrics.json
+
+  predict:
+    cmd: python scripts/predict.py
+    deps:
+      - scripts/predict.py
+      - models/trained
+      - configs/params.yaml
+    outs:
+      - predictions.json
+
