@@ -38,6 +38,7 @@ This project is for educational and research purposes only. The predictions shou
 
 # Clone the repository
 git clone https://github.com/abhinavvpundirr/stock-prediction-hybrid-model
+
 cd stock-prediction-hybrid-model
 
 # Install dependencies
